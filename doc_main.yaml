@@ -1,0 +1,69 @@
+endpoints:
+  - name: main # The API's name of your API
+    path: http://127.0.0.1:8000/ # The API's base url
+    requests:
+      - name: Soma # The name of the first request
+        path: / # The path of the first request
+        method: post
+        body:
+          val_1: 10
+          val_2: 10
+          operacao: "soma" # The HTTP method of the first request
+        tests:
+          - name: status_code_200 # The name of the first test for this request
+            assert:  ${{response.status_code == 200}}  # The assertion
+
+      - name: Subtração
+        path: /
+        method: post
+        body:
+          val_1: 10
+          val_2: 5
+          operacao: "subtração"
+        tests:
+          - name: status_code_200
+            assert:  ${{response.status_code == 200}}
+
+      - name: Multiplicação
+        path: /
+        method: post
+        body:
+          val_1: 10
+          val_2: 5
+          operacao: "multiplicação"
+        tests:
+          - name: status_code_200
+            assert:  ${{response.status_code == 200}}
+
+      - name: Divisão
+        path: /
+        method: post
+        body:
+          val_1: 10
+          val_2: 5
+          operacao: "divisão"
+        tests:
+          - name: status_code_200
+            assert:  ${{response.status_code == 200}}
+
+      - name: Divisão por zero
+        path: /
+        method: post
+        body:
+          val_1: 10
+          val_2: 0
+          operacao: "divisão"
+        tests:
+          - name: status_code_200
+            assert:  ${{response.status_code == 200}}
+
+      - name: Operação inválida
+        path: /
+        method: post
+        body:
+          val_1: 10
+          val_2: 5
+          operacao: "Python"
+        tests:
+          - name: status_code_200
+            assert:  ${{response.status_code == 200}}
